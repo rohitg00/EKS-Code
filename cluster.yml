@@ -1,0 +1,22 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: ViRocluster
+  region: ap-south-1
+nodeGroups:
+   - name: ng1
+     desiredCapacity: 2
+     instanceType: t2.micro
+     ssh:
+        publicKeyName: rohiteks-key
+   - name: ng-mixed
+     minSize: 1
+     maxSize: 3
+     instancesDistribution:
+       maxPrice: 0.010
+       instanceTypes: ["t2.micro"] 
+       onDemandBaseCapacity: 0
+       onDemandPercentageAboveBaseCapacity: 50
+       spotInstancePools: 2     
+     ssh:
+         publicKeyName: rohiteks-key
